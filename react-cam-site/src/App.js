@@ -18,7 +18,9 @@ function App() {
 					<Box h="100vh">
 						<Navbar />
 						<Flex>
-							<Gallery />
+							<Box>
+								<Gallery />
+							</Box>
 						</Flex>
 					</Box>
 				</DatabaseProvider>
