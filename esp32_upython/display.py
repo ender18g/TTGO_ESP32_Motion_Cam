@@ -30,3 +30,10 @@ def black(text=''):
     display.fill(0)
     display.text(text, 0, 24, 1)
     display.show()
+
+
+def white_box(text='', t=20):
+    display.fill(0)
+    display.fill_rect(t, t, 128-2*t, 64-2*t, 1)
+    display.text(text, t+5, t+5, 0)
+    display.show()

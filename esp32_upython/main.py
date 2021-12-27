@@ -1,8 +1,9 @@
 import wifimgr
-from display import draw, white, black
+from display import draw, white, black, white_box
 from machine import Pin
 import time
 from takePhoto import capture_post
+import urequests
 
 i = 0
 white('Wifi Setup...')
@@ -18,13 +19,22 @@ print("ESP OK")
 black('Welcome')
 time.sleep(2)
 
+# get the delay and quality values
+settings_url = 'http://allan18g.pythonanywhere.com/'
+settings = urequests.get(settings_url).json()
+print(settings)
+
+armed = settings.get('armed', False)
+quality = settings.get('quality', 30)
+delay = settings.get('delay', 30)
+
+
 pir = Pin(33, Pin.IN)
 # btn is 0 when pressed
 btn = Pin(34, Pin.IN)
 # record seconds so that we can avoid too manys photos
 last_shot = time.time()
-min_delay = 30
-armed = False
+
 
 black('Monitoring...')
 
@@ -44,9 +54,9 @@ while True:
         white('Motion!')
         i = 0
         now = time.time()
-        if now-last_shot > min_delay and armed:
-            white('--PHOTO--')
-            capture_post()
+        if now-last_shot > delay and armed:
+            white_box('--PHOTO--')
+            capture_post(quality)
             last_shot = now
     else:
         dots = '.'*(i % 4)
