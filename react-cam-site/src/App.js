@@ -1,42 +1,30 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { ChakraProvider, Box, Grid, theme, Flex, Text } from '@chakra-ui/react';
+import Navbar from './Navbar';
+import Gallery from './Gallery';
+import { useFirebaseApp, StorageProvider, DatabaseProvider } from 'reactfire';
+import { getStorage } from 'firebase/storage';
+import { getDatabase } from 'firebase/database';
 
 function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
-  );
+	const app = useFirebaseApp();
+	const storage = getStorage(app);
+	const database = getDatabase(app);
+
+	return (
+		<ChakraProvider theme={theme}>
+			<StorageProvider sdk={storage}>
+				<DatabaseProvider sdk={database}>
+					<Box h="100vh">
+						<Navbar />
+						<Flex>
+							<Gallery />
+						</Flex>
+					</Box>
+				</DatabaseProvider>
+			</StorageProvider>
+		</ChakraProvider>
+	);
 }
 
 export default App;

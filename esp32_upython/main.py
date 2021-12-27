@@ -1,6 +1,6 @@
 import wifimgr
 from display import draw, white, black, white_box
-from machine import Pin
+from machine import Pin, reset
 import time
 from takePhoto import capture_post
 import urequests
@@ -56,7 +56,11 @@ while True:
         now = time.time()
         if now-last_shot > delay and armed:
             white_box('--PHOTO--')
-            capture_post(quality)
+            try:
+                capture_post(quality)
+            except:
+                print("Camera Failed")
+                reset()
             last_shot = now
     else:
         dots = '.'*(i % 4)

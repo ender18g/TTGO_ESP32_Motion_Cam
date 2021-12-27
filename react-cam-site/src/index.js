@@ -1,16 +1,28 @@
 import { ColorModeScript } from '@chakra-ui/react';
-import React, { StrictMode } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { FirebaseAppProvider } from 'reactfire';
+
+const firebaseConfig = {
+	apiKey: 'AIzaSyBG0V7ALWY5Dz5WTVXGfTXZIQNeeRaOGzQ',
+	authDomain: 'esp32-cam-c0916.firebaseapp.com',
+	databaseURL: 'https://esp32-cam-c0916-default-rtdb.firebaseio.com',
+	projectId: 'esp32-cam-c0916',
+	storageBucket: 'esp32-cam-c0916.appspot.com',
+	messagingSenderId: '644369239348',
+	appId: '1:644369239348:web:44a4e786343778967a6961',
+	measurementId: 'G-H81RFMW8QY'
+};
 
 ReactDOM.render(
-  <StrictMode>
-    <ColorModeScript />
-    <App />
-  </StrictMode>,
-  document.getElementById('root')
+	<FirebaseAppProvider firebaseConfig={firebaseConfig}>
+		<ColorModeScript />
+		<App />
+	</FirebaseAppProvider>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
