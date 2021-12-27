@@ -18,7 +18,9 @@ export default function Gallery() {
 	console.log(imageList);
 	return (
 		<Box textAlign="center">
-			<Flex flexWrap="wrap">{imageList.reverse().map((imObj, k) => <ImageCard data={imObj} key={k} />)}</Flex>
+			<Flex justifyContent="space-around" flexWrap="wrap">
+				{imageList.reverse().map((imObj, k) => <ImageCard data={imObj} key={k} />)}
+			</Flex>
 		</Box>
 	);
 }

@@ -18,7 +18,7 @@ export default function ImageCard(props) {
 			<Link href={imageURL} isExternal>
 				<Image loading="lazy" maxH="300px" src={imageURL} />
 			</Link>
-			<Text p="2">{timestamp}</Text>
+			<Text p="2">{timestamp.slice(0, -7)}</Text>
 		</Box>
 	);
 }
