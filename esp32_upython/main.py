@@ -1,10 +1,12 @@
 import wifimgr
-from display import draw, white, black, white_box
+from display import white, black, white_box
 from machine import Pin, reset
 import time
 from takePhoto import capture_post
 import urequests
-
+import gc
+gc.enable()
+print(gc.mem_free())
 i = 0
 white('Wifi Setup...')
 wlan = wifimgr.get_connection()
@@ -25,8 +27,8 @@ settings = urequests.get(settings_url).json()
 print(settings)
 
 armed = settings.get('armed', False)
-quality = settings.get('quality', 30)
-delay = settings.get('delay', 30)
+quality = int(settings.get('quality', 30))
+delay = int(settings.get('delay', 30))
 
 
 pir = Pin(33, Pin.IN)
@@ -35,11 +37,18 @@ btn = Pin(34, Pin.IN)
 # record seconds so that we can avoid too manys photos
 last_shot = time.time()
 
+# we will restart every x seconds
+max_on_time = 60*60
+on_time = time.time()
+
 
 black('Monitoring...')
 
 
 while True:
+    if time.time()-on_time > max_on_time:
+        reset()
+
     if not btn.value():
         # if btn is pressed alternate arming the camera
         armed = not armed
@@ -56,11 +65,9 @@ while True:
         now = time.time()
         if now-last_shot > delay and armed:
             white_box('--PHOTO--')
-            try:
-                capture_post(quality)
-            except:
-                print("Camera Failed")
-                reset()
+            print(gc.mem_free())
+            capture_post(quality)
+            gc.collect()
             last_shot = now
     else:
         dots = '.'*(i % 4)
