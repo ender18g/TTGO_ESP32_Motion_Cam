@@ -7,6 +7,7 @@ import { getStorage } from 'firebase/storage';
 import { getDatabase } from 'firebase/database';
 import Settings from './Settings';
 import { useState } from 'react';
+import './app.css';
 
 function App() {
 	const app = useFirebaseApp();

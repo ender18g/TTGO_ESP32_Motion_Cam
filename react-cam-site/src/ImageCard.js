@@ -19,7 +19,15 @@ export default function ImageCard(props) {
 		return <Box w="300px" h="300px" />;
 	}
 	return (
-		<Box borderWidth="2px" borderColor="grey.100" borderRadius="lg" overflow="hidden" m="1" boxShadow="lg">
+		<Box
+			className="card"
+			borderWidth="1px"
+			borderColor="purple.300"
+			borderRadius="lg"
+			overflow="hidden"
+			m="1"
+			boxShadow="md"
+		>
 			<Link href={imageURL} isExternal>
 				<Image loading="lazy" maxH={`${maxSize}px`} src={imageURL} />
 			</Link>

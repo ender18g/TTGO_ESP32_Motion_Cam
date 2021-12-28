@@ -47,12 +47,12 @@ export default function Gallery() {
 	}
 
 	return (
-		<Box m="5" p="5" borderRadius="md" bg="gray.200" textAlign="center">
+		<Box m="5" p="5" borderRadius="md" bg="gray.100" textAlign="center">
 			<Heading size="lg" fontWeight="100">
 				Settings
 			</Heading>
-			<Flex m="5" justifyContent="space-around">
-				<Box>
+			<Flex m="5" justifyContent="space-around" flexWrap="wrap">
+				<Box m="1">
 					<Text>Image Quality</Text>
 					<NumberInput
 						onChange={(v) => setSettings({ ...settings, quality: v })}
@@ -61,6 +61,7 @@ export default function Gallery() {
 						value={settings.quality}
 						min={10}
 						max={63}
+						size="sm"
 					>
 						<NumberInputField />
 						<NumberInputStepper>
@@ -70,21 +71,12 @@ export default function Gallery() {
 					</NumberInput>
 				</Box>
 
-				<Box>
-					<Button
-						variant="outline"
-						colorScheme="red"
-						onClick={() => setSettings({ ...settings, armed: !settings.armed })}
-					>
-						{settings.armed === true ? 'Armed' : 'Disarmed'}
-					</Button>
-				</Box>
-
-				<Box>
+				<Box m="1">
 					<Text>Delay</Text>
 					<NumberInput
 						w="100px"
 						name="delay"
+						size="sm"
 						onChange={(v) => setSettings({ ...settings, delay: v })}
 						value={settings.delay}
 						min={0}
@@ -98,6 +90,16 @@ export default function Gallery() {
 					</NumberInput>
 				</Box>
 			</Flex>
+			<Box m="1">
+				<Button
+					size="sm"
+					variant="outline"
+					colorScheme="red"
+					onClick={() => setSettings({ ...settings, armed: !settings.armed })}
+				>
+					{settings.armed === true ? 'Armed' : 'Disarmed'}
+				</Button>
+			</Box>
 			<Button onClick={saveSettings} m="5" colorScheme="green">
 				Save Settings
 			</Button>
