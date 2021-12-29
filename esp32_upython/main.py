@@ -1,4 +1,4 @@
-import wifimgr
+#import wifimgr
 from display import white, black, white_box
 from machine import Pin, reset
 import time
@@ -8,12 +8,35 @@ import gc
 gc.enable()
 print(gc.mem_free())
 i = 0
-white('Wifi Setup...')
-wlan = wifimgr.get_connection()
-if wlan is None:
-    print("Could not initialize the network connection.")
-    while True:
-        pass  # you shall not pass :D
+
+
+
+# white('Wifi Setup...')
+# wlan = wifimgr.get_connection()
+# if wlan is None:
+#     print("Could not initialize the network connection.")
+#     while True:
+#         pass  # you shall not pass :D
+
+#Connect to our WIFI
+
+def do_connect():
+    import network
+    k=0
+    wlan = network.WLAN(network.STA_IF)
+    wlan.active(True)
+    if not wlan.isconnected():
+        print('connecting to network...')
+        wlan.connect('SUAS', 'usna-suas')
+        while not wlan.isconnected():
+            k+=1
+            dots = '.'*(k % 4)
+            black('Connecting' +  dots)
+            pass
+    print('network config:', wlan.ifconfig())
+
+do_connect()
+
 
 
 # Main Code goes here, wlan is a working network.WLAN(STA_IF) instance.
