@@ -29,20 +29,23 @@ class Camboard:
     #reset the pull settings time
     self.last_set=time.time()
     #now try to pull all of our settings and save them
+    black('Updating')
     try:
       data = urequests.get(self.url).json()
-      print(data)
     except:
-      print('Cannot Pull Data')
       reset()
-      return None
+    print(data)
     self.armed = bool(data.get('armed',True))
     self.quality = int(data.get('quality',40))
     self.delay = int(data.get('delay',2))
     self.pre_delay = int(data.get('pre_delay',0))
-    self.min_move = int(data.get('min_move',5))
-    self.update_period = int(data.get('update_period',60*5))
-    self.max_on_time = int(data.get('max_on_time',60*15))
+    self.min_move = int(data.get('min_move',0))
+    self.update_period = int(data.get('update_period',60*1))
+    self.max_on_time = int(data.get('max_on_time',60*60*8))
+    self.instant_photo = bool(data.get('instant_photo',False))
+    if self.instant_photo: 
+      capture_post()
+      self.instant_photo=False
 
   def check_update(self):
     if time.time()-self.last_set>self.update_period:
