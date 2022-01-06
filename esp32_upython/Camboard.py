@@ -1,5 +1,5 @@
 import urequests
-from machine import reset, Pin
+from machine import reset, Pin, WDT
 import time
 from display import white, black, white_box
 from takePhoto import capture_post
@@ -22,6 +22,8 @@ class Camboard:
     self.pull_settings()
     #enable the garbage collector
     gc.enable()
+    #enable Watchdog Timer w/ 5sec timer
+    self.wdt=WDT(timeout=5000)
 
   def pull_settings(self):
     print('pulling settings')
@@ -41,10 +43,10 @@ class Camboard:
     self.pre_delay = int(data.get('pre_delay',0))
     self.min_move = int(data.get('min_move',0))
     self.update_period = int(data.get('update_period',60*1))
-    self.max_on_time = int(data.get('max_on_time',60*60*8))
+    self.max_on_time = int(data.get('max_on_time',60*60*1))
     self.instant_photo = bool(data.get('instant_photo',False))
     if self.instant_photo: 
-      capture_post()
+      self.try_post()
       self.instant_photo=False
 
   def check_update(self):
@@ -121,7 +123,7 @@ class Camboard:
           print(gc.mem_free())
           #take photo
           print('Taking Photo')
-          capture_post(self.quality)
+          self.try_post()
           #clear unused memory!
           gc.collect()
           #record the last shot time
@@ -129,10 +131,18 @@ class Camboard:
     else:
       self.show_monitor()
 
+  def try_post(self):
+    try:
+      capture_post(self.quality)
+    except:
+      print('Photo issue')
+
   def monitor(self):
     while True:
       #check all update conditions
       self.check_all()
       self.check_motion()
-      time.sleep_ms(100)
+      #time.sleep_ms(50)
+      gc.collect()
+      self.wdt.feed()
 
