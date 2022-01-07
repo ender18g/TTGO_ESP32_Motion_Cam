@@ -51,7 +51,8 @@ export default function Gallery() {
 			<Heading size="lg" fontWeight="100">
 				Settings
 			</Heading>
-			<Flex m="5" justifyContent="space-around" flexWrap="wrap">
+			<Text mt="1">{settings.time}</Text>
+			<Flex m="3" justifyContent="space-around" flexWrap="wrap">
 				<Box m="1">
 					<Text>Image Quality</Text>
 					<NumberInput
@@ -90,6 +91,15 @@ export default function Gallery() {
 					</NumberInput>
 				</Box>
 			</Flex>
+			<Button
+				size="sm"
+				variant="outline"
+				colorScheme="blue"
+				onClick={() => setSettings({ ...settings, instant_photo: !settings.instant_photo })}
+			>
+				{settings.instant_photo === true ? 'Photo Requested' : 'Instant Photo'}
+			</Button>
+			<Box m="1" />
 			<Box m="1">
 				<Button
 					size="sm"

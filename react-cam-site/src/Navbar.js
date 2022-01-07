@@ -20,8 +20,8 @@ function Navbar(props) {
 					whiteSpace="nowrap"
 					textColor="gray.200"
 					mx="4"
-					fontWeight="400"
-					letterSpacing="4px"
+					fontWeight="300"
+					letterSpacing="3px"
 					fontSize="xl"
 				>
 					Hopper Cam
