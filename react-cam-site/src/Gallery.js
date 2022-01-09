@@ -20,7 +20,7 @@ import {
 import ImageCard from './ImageCard';
 import 'firebase/database';
 import { ref, query, child, remove } from 'firebase/database';
-import { useDatabaseListData, useDatabase } from 'reactfire';
+import { useDatabaseListData, useDatabase, useSigninCheck } from 'reactfire';
 import { useState, useEffect } from 'react';
 
 export default function Gallery() {

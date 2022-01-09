@@ -2,6 +2,7 @@ import React from 'react';
 import { theme, Box, Flex, Text, Heading, Image } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import camera from './camera.svg';
+import { Auth } from './Auth';
 
 function Navbar(props) {
 	const toggleSettings = props.toggleSettings;
@@ -27,7 +28,11 @@ function Navbar(props) {
 					Hopper Cam
 				</Heading>
 			</Flex>
-			<ColorModeSwitcher />
+			<Flex>
+				<Auth />
+
+				<ColorModeSwitcher />
+			</Flex>
 		</Flex>
 	);
 }
