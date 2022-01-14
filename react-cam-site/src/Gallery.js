@@ -38,7 +38,7 @@ export default function Gallery() {
 			imageList.map((imObj) => {
 				dateArray.push(imObj.filename.slice(0, 10));
 			});
-			setDates([ ...new Set(dateArray) ].reverse().slice(0, 7));
+			setDates([ ...new Set(dateArray) ].reverse().slice(0, 21));
 		},
 		[ imageList ]
 	);

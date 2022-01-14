@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "esp32-cam-c0916"
+  },
+  "targets": {
+    "esp32-cam-c0916": {
+      "hosting": {
+        "app": [
+          "hopper-cam"
+        ]
+      }
+    }
   }
 }

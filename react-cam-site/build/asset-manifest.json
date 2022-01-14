@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Users/wrc/elsberry/cam/static/css/main.837b43b6.css",
-    "main.js": "/Users/wrc/elsberry/cam/static/js/main.76075536.js",
-    "static/js/377.9e04f6ed.chunk.js": "/Users/wrc/elsberry/cam/static/js/377.9e04f6ed.chunk.js",
-    "static/media/Hopper2.png": "/Users/wrc/elsberry/cam/static/media/Hopper2.53bfeabbb9c78bdf3944.png",
-    "static/media/camera.svg": "/Users/wrc/elsberry/cam/static/media/camera.49cf68f7ca7342c73c66e795b82e02ec.svg",
-    "index.html": "/Users/wrc/elsberry/cam/index.html",
-    "main.837b43b6.css.map": "/Users/wrc/elsberry/cam/static/css/main.837b43b6.css.map",
-    "main.76075536.js.map": "/Users/wrc/elsberry/cam/static/js/main.76075536.js.map",
-    "377.9e04f6ed.chunk.js.map": "/Users/wrc/elsberry/cam/static/js/377.9e04f6ed.chunk.js.map"
+    "main.css": "./static/css/main.10a59653.css",
+    "main.js": "./static/js/main.de2a2108.js",
+    "static/js/377.9e04f6ed.chunk.js": "./static/js/377.9e04f6ed.chunk.js",
+    "static/media/Hopper2.png": "./static/media/Hopper2.53bfeabbb9c78bdf3944.png",
+    "static/media/camera.svg": "./static/media/camera.49cf68f7ca7342c73c66e795b82e02ec.svg",
+    "index.html": "./index.html",
+    "main.10a59653.css.map": "./static/css/main.10a59653.css.map",
+    "main.de2a2108.js.map": "./static/js/main.de2a2108.js.map",
+    "377.9e04f6ed.chunk.js.map": "./static/js/377.9e04f6ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.837b43b6.css",
-    "static/js/main.76075536.js"
+    "static/css/main.10a59653.css",
+    "static/js/main.de2a2108.js"
   ]
 }
