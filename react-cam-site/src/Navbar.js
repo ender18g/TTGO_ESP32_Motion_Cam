@@ -8,7 +8,7 @@ function Navbar(props) {
 	const toggleSettings = props.toggleSettings;
 	return (
 		<Flex
-			bgGradient="linear(to-r, blue.600, purple.600 )"
+			bgGradient="linear(to-r, purple.700, purple.800 )"
 			boxShadow="lg"
 			justifyContent="space-between"
 			alignContent="center"
